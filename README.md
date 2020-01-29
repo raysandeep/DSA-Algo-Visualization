@@ -12,9 +12,10 @@ Algorithms covered so far:
 | Insertion Sort | insertion_sort |
 | Heap Sort | heap_sort |
 | Merge Sort | merge_sort |
+| Comb Sort | comb_sort |
 | Counting Sort | counting_sort |
 | Radix Sort | radix_sort |
-| Comb Sort | comb_sort |
+| Shell Sort | shell_sort |
 
 # Usage:
 

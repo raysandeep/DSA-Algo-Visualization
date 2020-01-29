@@ -302,4 +302,26 @@ def counting_sort(nums):
     for i in range(0, size):
         nums.set(i,output[i])
 
+  
+def shell_sort(nums): 
+    n = nums.get_len()
+    gap = n//2
 
+    while gap > 0: 
+  
+        for i in range(gap,n): 
+  
+            # add a[i] to the elements that have been gap sorted 
+            # save a[i] in temp and make a hole at position i 
+            temp = nums.values[i] 
+  
+            # shift earlier gap-sorted elements up until the correct 
+            # location for a[i] is found 
+            j = i 
+            while  j >= gap and nums.values[j-gap] >temp: 
+                nums.values[j] = nums.values[j-gap] 
+                j -= gap 
+  
+            # put temp (the original a[i]) in its correct location 
+            nums.set(j,temp) 
+        gap //= 2
