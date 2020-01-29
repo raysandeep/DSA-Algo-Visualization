@@ -212,3 +212,94 @@ def quick_sort(nums):  # n^2
             _quick_sort(items, split_index + 1, high)
 
     _quick_sort(nums, 0, nums.get_len() - 1)
+
+
+
+
+def comb_sort(nums):
+    n = nums.get_len() 
+    gap = n 
+    swapped = True
+    
+    def NextGap(gap): 
+        # Shrink gap
+        gap = (gap * 10)//13
+        if gap < 1: 
+            return 1
+        return gap 
+
+    while gap !=1 or swapped == 1: 
+  
+        gap = NextGap(gap) 
+        swapped = False
+  
+        for i in range(0, n-gap): 
+            if nums.values[i] > nums.values[i + gap]: 
+                nums.swap(i,i + gap)
+                swapped = True
+    
+
+
+
+def radix_sort(nums): 
+    
+    def maxi():
+        length = nums.get_len()
+        temp = 0
+        for i in range(length):
+            if nums.values[i]>temp:
+                temp = nums.values[i]
+        
+        return temp
+
+    def countingSort(nums, exp1): 
+        n = nums.get_len() 
+        output = [0] * (n) 
+        count = [0] * (10) 
+        for i in range(0, n): 
+            index = int(nums.values[i]//exp1) 
+            count[ (index)%10 ] += 1
+    
+        for i in range(1,10): 
+            count[i] += count[i-1] 
+    
+        i = n-1
+        while i>=0: 
+            index = int(nums.values[i]//exp1) 
+            output[ count[ (index)%10 ] - 1] = nums.values[i] 
+            count[ (index)%10 ] -= 1
+            i -= 1
+    
+
+        i = 0
+        for i in range(0,nums.get_len()): 
+            nums.set(i,output[i]) 
+
+    max1 = maxi() 
+  
+
+    exp = 1
+    while max1/exp > 0: 
+        countingSort(nums,exp) 
+        exp *= 10
+
+
+
+def counting_sort(nums): 
+    size = nums.get_len()
+    print(size)
+    output = [0] * size
+    count = [0] * 2000
+    for i in range(0, size):
+        count[nums.values[i]] += 1
+    for i in range(1, 2000):
+        count[i] += count[i - 1]
+    i = size - 1
+    while i >= 0:
+        output[count[nums.values[i]] - 1] = nums.values[i]
+        count[nums.values[i]] -= 1
+        i -= 1
+    for i in range(0, size):
+        nums.set(i,output[i])
+
+
